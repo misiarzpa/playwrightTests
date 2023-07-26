@@ -10,6 +10,7 @@ test.describe('Pulpit tests', () => {
         const transferAmount = '120';
         const transferTitle = 'Przelew';
         const expectedTextAfterSuccessfullTransfer = 'Przelew wykonany';
+        
         // Act
         await page.goto(url);
         await page.getByTestId('login-input').fill(userLogin);
