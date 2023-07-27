@@ -9,8 +9,7 @@ test.describe('Pulpit tests', () => {
         const receiverID = '2';
         const transferAmount = '120';
         const transferTitle = 'Przelew';
-        const expectedTextAfterSuccessfullTransfer = 'Przelew wykonany';
-        
+        const expectedTextAfterSuccessfullTransfer = 'Przelew wykonoany';
         // Act
         await page.goto(url);
         await page.getByTestId('login-input').fill(userLogin);
@@ -32,7 +31,7 @@ test.describe('Pulpit tests', () => {
         const userPassword = 'lalalla6';
         const receiverId = '502 xxx xxx';
         const topUpAmonut = '120';
-        const expectedMessageAfterSuccessfullTopUp = 'Doładowanie wykonane';
+        const expectedMessageAfterSuccessfullTopUp = `Doładowanie wykonane! ${topUpAmonut},00PLN na numer ${receiverId}`;
         // Act
         await page.goto(url);
         await page.getByTestId('login-input').fill(userLogin);
