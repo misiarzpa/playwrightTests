@@ -3,8 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('User login to Demobank', () => {
 
   test.beforeEach(async({page})=>{
-    const url = 'https://demo-bank.vercel.app/';
-    await page.goto(url);
+    await page.goto('/');
   })
 
   test('successfull login with correct credentials', async ({ page }) => {
@@ -34,7 +33,7 @@ test.describe('User login to Demobank', () => {
     await expect(page.getByTestId('error-login-id')).toHaveText(expectedErrorForTooShortLogin);
   });
 
-  test('unsuccessfull login with too short password', async ({ page }) => {
+  test.('unsuccessfull login with too short password', async ({ page }) => {
     //Arrange
     const userLogin = 'testdemo';
     const userPassword = 'pas';
