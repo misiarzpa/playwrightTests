@@ -33,7 +33,7 @@ test.describe('User login to Demobank', () => {
     await expect(page.getByTestId('error-login-id')).toHaveText(expectedErrorForTooShortLogin);
   });
 
-  test.('unsuccessfull login with too short password', async ({ page }) => {
+  test('unsuccessfull login with too short password', async ({ page }) => {
     //Arrange
     const userLogin = 'testdemo';
     const userPassword = 'pas';
