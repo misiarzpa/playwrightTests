@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { loginData } from '../test data/login.data';
 
 test.describe('User login to Demobank', () => {
   test.beforeEach(async ({ page }) => {
@@ -7,8 +8,8 @@ test.describe('User login to Demobank', () => {
 
   test('successfull login with correct credentials', async ({ page }) => {
     // Arrange
-    const userLogin = 'demotest';
-    const userPassword = 'lalalla6';
+    const userLogin = loginData.loginId;
+    const userPassword = loginData.userPassword;
     const expectedUserName = 'Jan Demobankowy';
 
     // Act
@@ -36,13 +37,13 @@ test.describe('User login to Demobank', () => {
 
   test('unsuccessfull login with too short password', async ({ page }) => {
     //Arrange
-    const userLogin = 'testdemo';
-    const userPassword = 'pas';
+    const incorrectUserLogin = loginData.loginId;
+    const incorrectUserPassword = 'pas';
     const expectedErrorForTooShortPassword = 'hasło ma min. 8 znaków';
 
     //Act
-    await page.getByTestId('login-input').fill(userLogin);
-    await page.getByTestId('password-input').fill(userPassword);
+    await page.getByTestId('login-input').fill(incorrectUserLogin);
+    await page.getByTestId('password-input').fill(incorrectUserPassword);
     await page.getByTestId('password-input').blur();
 
     //Asset
