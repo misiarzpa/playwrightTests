@@ -1,10 +1,9 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('User login to Demobank', () => {
-
-  test.beforeEach(async({page})=>{
+  test.beforeEach(async ({ page }) => {
     await page.goto('/');
-  })
+  });
 
   test('successfull login with correct credentials', async ({ page }) => {
     // Arrange
@@ -30,7 +29,9 @@ test.describe('User login to Demobank', () => {
     await page.getByTestId('login-input').blur();
 
     //Asset
-    await expect(page.getByTestId('error-login-id')).toHaveText(expectedErrorForTooShortLogin);
+    await expect(page.getByTestId('error-login-id')).toHaveText(
+      expectedErrorForTooShortLogin,
+    );
   });
 
   test('unsuccessfull login with too short password', async ({ page }) => {
@@ -45,7 +46,8 @@ test.describe('User login to Demobank', () => {
     await page.getByTestId('password-input').blur();
 
     //Asset
-    await expect(page.getByTestId('error-login-password')).toHaveText(expectedErrorForTooShortPassword);
+    await expect(page.getByTestId('error-login-password')).toHaveText(
+      expectedErrorForTooShortPassword,
+    );
   });
-
-})
+});
