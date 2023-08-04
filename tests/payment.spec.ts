@@ -8,7 +8,7 @@ test.describe('Payment', () => {
     const userPassword = loginData.userPassword;
     const loginPage = new LoginPage(page);
     await page.goto('/');
-    await loginPage.logiInput.fill(userLogin);
+    await loginPage.loginInput.fill(userLogin);
     await loginPage.passwordInput.fill(userPassword);
     await loginPage.loginButton.click();
     await page.getByRole('link', { name: 'płatności' }).click();

@@ -7,7 +7,7 @@ test.describe('User login to Demobank', () => {
     await page.goto('/');
   });
 
-  test.only('successfull login with correct credentials', async ({ page }) => {
+  test('successfull login with correct credentials', async ({ page }) => {
     // Arrange
     const userLogin = loginData.loginId;
     const userPassword = loginData.userPassword;
@@ -17,7 +17,7 @@ test.describe('User login to Demobank', () => {
     //tworze obiekt loginPage z klasy LoginPage
     const loginPage = new LoginPage(page);
     // await loginPage.login(userLogin, userPassword);
-    await loginPage.logiInput.fill(userLogin);
+    await loginPage.loginInput.fill(userLogin);
     await loginPage.passwordInput.fill(userPassword);
     await loginPage.loginButton.click();
 
@@ -29,13 +29,14 @@ test.describe('User login to Demobank', () => {
     //Arrange
     const userLogin = 'test';
     const expectedErrorForTooShortLogin = 'identyfikator ma min. 8 znaków';
+    const loginPage = new LoginPage(page);
 
     //Act
-    await page.getByTestId('login-input').fill(userLogin);
-    await page.getByTestId('login-input').blur();
+    await loginPage.loginInput.fill(userLogin);
+    await loginPage.loginInput.blur();
 
     //Asset
-    await expect(page.getByTestId('error-login-id')).toHaveText(
+    await expect(loginPage.loginError).toHaveText(
       expectedErrorForTooShortLogin,
     );
   });
@@ -45,14 +46,15 @@ test.describe('User login to Demobank', () => {
     const incorrectUserLogin = loginData.loginId;
     const incorrectUserPassword = 'pas';
     const expectedErrorForTooShortPassword = 'hasło ma min. 8 znaków';
+    const loginPage = new LoginPage(page);
 
     //Act
-    await page.getByTestId('login-input').fill(incorrectUserLogin);
-    await page.getByTestId('password-input').fill(incorrectUserPassword);
-    await page.getByTestId('password-input').blur();
+    await loginPage.loginInput.fill(incorrectUserLogin);
+    await loginPage.passwordInput.fill(incorrectUserPassword);
+    await loginPage.passwordInput.blur();
 
     //Asset
-    await expect(page.getByTestId('error-login-password')).toHaveText(
+    await expect(loginPage.passwordError).toHaveText(
       expectedErrorForTooShortPassword,
     );
   });
